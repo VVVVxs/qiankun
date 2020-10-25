@@ -1,24 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import { loadMicroApp } from 'qiankun';
 function App() {
+
+
+
+  const loadChildApp = () => {
+    // console.log('22',loadMicroApp({
+    //   name: 'micro app',
+    //   entry: '//localhost:8080',
+    //   container: '#microapp',
+    // }));
+    loadMicroApp({
+      name: 'support',
+      entry: '//localhost:8080',
+      container: '#microapp',
+    });
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      我是主应用
+      <button onClick={loadChildApp}>点击加载子应用</button>
     </div>
   );
 }
