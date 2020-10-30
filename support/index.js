@@ -1,35 +1,37 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// import App from './src/index.jsx';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './src/index.jsx';
 
-// const render = () => {
-//   ReactDOM.render(<App />, document.getElementById("root")); // 修改id
-// };
+__webpack_public_path__ = window.__INJECTED_PUBLIC_PATH_BY_QIANKUN__;
 
-console.log('444',window.support);
-
-if (!window.__POWERED_BY_QIANKUN__) {
-  console.log('222');
-  // render();
-}
-export default {
-  // 应用加载之前
-  async bootstrap(props) {
-    console.log('app1 bootstrap', props);
-  },
-  // 应用 render 之前触发
-  async mount(props) {
-    // render()
-  },
-  // 应用卸载之后触发
-  async unmount(props) {
-    console.log('app1 unmount', props);
-  },
-  // async update(props) {
-  //   console.log('update props', props);
-  // },
+const render = (props) => {
+    console.log('window.__POWERED_BY_QIANKUN__',window.__POWERED_BY_QIANKUN__);
+    ReactDOM.render(<App {...props}/>, document.getElementById("root")); // 修改id
 };
 
+
+// 应用加载之前
+export async function bootstrap(props) {
+    console.log('app1 bootstrap', props);
+};
+// 应用 render 之前触发
+export async function mount(props) {
+    render({
+        name: props.sss,
+    })
+};
+// 应用卸载之后触发
+export async function unmount(props) {
+    console.log('app1 unmount', props);
+};
+export async function update(props) {
+  console.log('update props', props);
+};
+
+if (!window.__POWERED_BY_QIANKUN__) {
+    console.log('222');
+    render();
+}
 // /**
 //  * bootstrap 只会在微应用初始化的时候调用一次，下次微应用重新进入时会直接调用 mount 钩子，不会再重复触发 bootstrap。
 //  * 通常我们可以在这里做一些全局变量的初始化，比如不会在 unmount 阶段被销毁的应用级别的缓存等。

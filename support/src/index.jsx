@@ -1,8 +1,12 @@
 import React from 'react';
-
-const App = () => {
+import pic from '../static/pic.jpg'
+const App = (props) => {
+    console.log('props', props);
     return (
-        <div>Hello world</div>
+        <div>
+            <div>Hello wor45l2222d</div>
+            <img src={pic} alt=""/>
+        </div>
     )
 }
 export default App;
