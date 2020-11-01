@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { loadMicroApp } from 'qiankun';
 function App() {
 
@@ -17,10 +17,17 @@ function App() {
     });
   }
 
+  // useEffect(() => {
+  //   window.addEventListener('message', function (e) {
+  //     console.log('接收到子应用消息',e.data);
+  //   });
+  // }, [])
+
   return (
     <div>
       我是主应用
-      <button onClick={loadChildApp}>点击加载子应用</button>
+      {/* <button onClick={loadChildApp}>点击加载子应用</button> */}
+      <iframe src="http://localhost:8080" />
     </div>
   );
 }
